@@ -9,6 +9,7 @@ import java.util.List;
 public interface BookingService {
     Booking saveBooking(BookingDto bookingDto);
     List<Booking> allBooking();
-//    List<Booking> findByUser();
+    Booking changeStatus(long id);
+
 
 }

@@ -5,9 +5,13 @@ import net.javaguides.springboot.model.RoomType;
 public class RoomViewDto {
 
     private Long id;
+
     private int colPeople;
     private int price;
     private int number;
+
+    private String statusBooking;
+
     private int floor;
     private RoomType typeRoom;
 
@@ -52,6 +56,16 @@ public class RoomViewDto {
         this.floor = floor;
         this.typeRoom = typeRoom;
     }
+
+    public RoomViewDto(int colPeople, int price, int number, String statusBooking, int floor, RoomType typeRoom) {
+        this.colPeople = colPeople;
+        this.price = price;
+        this.number = number;
+        this.statusBooking = statusBooking;
+        this.floor = floor;
+        this.typeRoom = typeRoom;
+    }
+
 
     public Long getId() {
         return id;
@@ -99,5 +113,13 @@ public class RoomViewDto {
 
     public void setFloor(int floor) {
         this.floor = floor;
+    }
+
+    public String getStatusBooking() {
+        return statusBooking;
+    }
+
+    public void setStatusBooking(String statusBooking) {
+        this.statusBooking = statusBooking;
     }
 }

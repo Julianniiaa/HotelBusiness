@@ -112,24 +112,26 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <!--                <th scope="col">ID</th>-->
                                     <th scope="col">Дата заезда</th>
                                     <th scope="col">Дата отъезда</th>
-                                    <th scope="col">Стоимость номера</th>
-                                    <th scope="col">Стоимость доп услуг</th>
+                                    <th scope="col">Стоимость Номера</th>
+                                    <th scope="col">Стоимость Доп услуг</th>
+                                    <th scope="col">№ комнаты</th>
+                                    <th scope="col">Тип номера</th>
+                                    <th scope="col">Статус</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="booking : ${listBooking}">
-                                    <!--                <td th:text="${booking.id}"></td>-->
                                     <td th:text="${booking.dateBegin}"></td>
                                     <td th:text="${booking.dateEnd}"></td>
                                     <td th:text="${booking.priceRoom}"></td>
                                     <td th:text="${booking.priceService}"></td>
-                                    <!--                <td> -->
-                                    <!--                    <a th:href="@{/showFormForUpdateAdmin/{id}(id=${admin.id})}" class="btn btn-primary">Update</a>-->
-                                    <!--                    <a th:href="@{/deleteUser/{id}(id=${admin.id})}" class="btn btn-danger">Delete</a>-->
-                                    <!--                </td>-->
+                                    <td th:text="${booking.roomView.number}"></td>
+                                    <td th:text="${booking.roomView.roomType.type}"></td>
+                                    <td th:text="${booking.status}"></td>
+                                    <td><a th:href="@{/changeStatus/{id}(id=${booking.id})}">Отмена брони</a></td>
+
                                 </tr>
                                 </tbody>
                             </table>

@@ -4,15 +4,15 @@ public class ProfitDto {
 
     private int totalPrice;
     private int totalPriceLux;
-    private int totalPriceStandart;
+    private int totalPriceStandard;
 
     public ProfitDto() {
     }
 
-    public ProfitDto(int totalPrice, int totalPriceLux, int totalPriceStandart) {
+    public ProfitDto(int totalPrice, int totalPriceLux, int totalPriceStandard) {
         this.totalPrice = totalPrice;
         this.totalPriceLux = totalPriceLux;
-        this.totalPriceStandart = totalPriceStandart;
+        this.totalPriceStandard = totalPriceStandard;
     }
 
     public int getTotalPrice() {
@@ -31,11 +31,11 @@ public class ProfitDto {
         this.totalPriceLux = totalPriceLux;
     }
 
-    public int getTotalPriceStandart() {
-        return totalPriceStandart;
+    public int getTotalPriceStandard() {
+        return totalPriceStandard;
     }
 
-    public void setTotalPriceStandart(int totalPriceStandart) {
-        this.totalPriceStandart = totalPriceStandart;
+    public void setTotalPriceStandard(int totalPriceStandard) {
+        this.totalPriceStandard = totalPriceStandard;
     }
 }

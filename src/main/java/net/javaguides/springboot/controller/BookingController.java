@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Controller
 @RequestMapping("/booking")
 public class BookingController {
-
 
     @Autowired
     private BookingService bookingService;
@@ -52,10 +52,19 @@ public class BookingController {
     @ModelAttribute("booking")
     public BookingDto bookingRegistration( Model model, BookingDto bookingDto) {
         List<RoomView> listTypeOfRooms = roomViewService.allRoomView();
+        List<RoomView> listFreeRooms = new ArrayList<>();
         List<CustomService> listOfService =  customServices.allService();
+
+        for(RoomView roomView : listTypeOfRooms){
+            if(roomView.getStatusBooking().equals("Свободный")){
+                listFreeRooms.add(roomView);
+            }
+        }
+
+
         User user = userService.getUserByEmail(getCurrentUsername());
         model.addAttribute("listService", listOfService);
-        model.addAttribute("roomTypes", listTypeOfRooms);
+        model.addAttribute("roomTypes", listFreeRooms);
         model.addAttribute("user", user);
         return new BookingDto();
     }
@@ -65,12 +74,13 @@ public class BookingController {
         return "booking";
     }
 
-
     @PostMapping
     public String registerBooking(@ModelAttribute("booking") BookingDto bookingDto, Model model) {
+        bookingDto.setStatus("Активно");
         bookingService.saveBooking(bookingDto);
         return "redirect:/booking";
     }
+
 
 
 }

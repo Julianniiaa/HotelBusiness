@@ -36,22 +36,24 @@ public class ProfitController {
 
         int totalPrice = 0;
         for (Booking booking : bookingList){
-            totalPrice += booking.getPriceRoom();
+            if(booking.getStatus().equals("Активно")) {
+                totalPrice += booking.getPriceRoom();
+            }
         }
         int totalPriceLux = 0;
-        int totalPriceStandart = 0;
+        int totalPriceStandard = 0;
         for(Booking booking2 : bookingList){
-            if(booking2.getRoomView().getRoomType().getType().equals("Lux")) {
+            if(booking2.getRoomView().getRoomType().getType().equals("Lux") & booking2.getStatus().equals("Активно")) {
                 totalPriceLux += booking2.getPriceRoom();
-            } else if(booking2.getRoomView().getRoomType().getType().equals("Standart")){
-                totalPriceStandart += booking2.getPriceRoom();
+            } else if(booking2.getRoomView().getRoomType().getType().equals("Standard") & booking2.getStatus().equals("Активно")){
+                totalPriceStandard += booking2.getPriceRoom();
             }
         }
 
-        ProfitDto profitDto = new ProfitDto(totalPrice, totalPriceLux, totalPriceStandart);
+        ProfitDto profitDto = new ProfitDto(totalPrice, totalPriceLux, totalPriceStandard);
         List<ProfitDto> profitDtoList = new ArrayList<>();
         profitDtoList.add(profitDto);
-                model.addAttribute("totalPrice", profitDtoList);
+        model.addAttribute("totalPrice", profitDtoList);
 
         return new BookingDto();
     }

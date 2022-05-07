@@ -88,7 +88,8 @@
                             <a class="nav-item nav-link" th:href="@{/admin}">Админ</a>
                             <a class="nav-item nav-link" th:href="@{/room_form}">Добавление номера</a>
                             <a class="nav-item nav-link active" th:href="@{/profit}">Прибыль</a>
-                            <a class="nav-item nav-link" th:href="@{/support}">Техподдержка</a>
+                            <a class="nav-item nav-link" th:href="@{/support}">Техпод-держка</a>
+                            <a class="nav-item nav-link" th:href="@{/booking_table}">Брони-рования</a>
                             <a class="nav-item nav-link" th:href="@{/room_View}">Номера</a>
 
                         </div>
@@ -120,7 +121,7 @@
                                         Прибыль Lux
                                     </th>
                                     <th>
-                                        Прибыль Standart
+                                        Прибыль Standard
                                     </th>
                                 </tr>
                                 </thead>
@@ -128,7 +129,7 @@
                                 <tr th:each="price : ${totalPrice}">
                                     <td th:text="${price.totalPrice}"></td>
                                     <td th:text="${price.totalPriceLux}"></td>
-                                    <td th:text="${price.totalPriceStandart}"></td>
+                                    <td th:text="${price.totalPriceStandard}"></td>
                                     <!--        <td> <a th:href="@{/showFormForUpdateAdmin/{id}(id=${admin.id})}" class="btn btn-primary">Update</a>-->
                                     <!--            <a th:href="@{/deleteUser/{id}(id=${admin.id})}" class="btn btn-danger">Delete</a>-->
                                     <!--        </td>-->

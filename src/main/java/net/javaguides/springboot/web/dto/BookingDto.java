@@ -19,6 +19,9 @@ public class BookingDto {
     private int priceRoom;
     private int priceService;
     private int colDay;
+
+    private String status;
+
     private RoomView roomView;
     private User user;
     private Set<CustomService> customServices;
@@ -108,6 +111,9 @@ public class BookingDto {
         this.colDay = colDay;
         this.roomView = roomView;
     }
+
+
+
 
     public Long getId() {
         return id;
@@ -219,5 +225,13 @@ public class BookingDto {
 
     public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class RoomViewServiceImpl implements RoomViewService {
 
-//    @Autowired
+    //    @Autowired
     private RoomViewRepository roomViewRepository;
 
     @Autowired
@@ -34,6 +34,7 @@ public class RoomViewServiceImpl implements RoomViewService {
 //                roomViewDto.getColRooms(),
                 roomViewDto.getNumber(),
                 roomViewDto.getFloor(),
+                roomViewDto.getStatusBooking(),
                 roomType);
 //                Arrays.asList(new RoomType(roomViewDto.getTypeRoom())));
         return roomViewRepository.save(roomView);

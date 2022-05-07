@@ -37,7 +37,7 @@ public class RoomViewFormController {
 
     @ModelAttribute("roomView")
     public RoomViewDto RoomViewRegistration(Model model, RoomViewDto roomViewDto) {
-        List<String> listTypeOfRooms = Arrays.asList("Standart", "Lux");
+        List<String> listTypeOfRooms = Arrays.asList("Standard", "Lux");
         model.addAttribute("roomTypes", listTypeOfRooms);
         return new RoomViewDto();
     }
@@ -49,6 +49,7 @@ public class RoomViewFormController {
 
     @PostMapping
     public String registerRoomView(@ModelAttribute("roomView") RoomViewDto roomViewDto, Model model) {
+        roomViewDto.setStatusBooking("Свободный");
         roomViewService.saveRoomView(roomViewDto);
         return "redirect:/room_form";
     }

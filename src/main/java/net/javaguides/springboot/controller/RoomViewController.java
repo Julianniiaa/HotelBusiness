@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -41,6 +42,7 @@ public class RoomViewController {
     @RequestMapping("/room_View")
     public String viewHomePage(Model model, @Param("keyword") String keyword) {
         List<RoomView> list = roomViewService.allRoomView();
+
         model.addAttribute("listRoom", list);
 
         List<RoomView> listRoom = roomViewService.findByKeyword(keyword);
@@ -50,8 +52,6 @@ public class RoomViewController {
         return "room_View";
     }
 
-
-
 //    @RequestMapping("/room_View")
 //    public String viewHomePage(Model model) {
 //        List<RoomView> list = roomViewService.allRoomView();
@@ -60,11 +60,13 @@ public class RoomViewController {
 //        return "room_View";
 //    }
 
-     private Long id3;
+    private Long id3;
 
     @RequestMapping("/edit/{id}")
-    public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
+    public ModelAndView showEditRoomViewPage(@PathVariable(name = "id") int id, Model model) {
         ModelAndView mav = new ModelAndView("edit_room");
+        List<String> listTypeOfRooms = Arrays.asList("Свободный", "Занят");
+        model.addAttribute("status", listTypeOfRooms);
         RoomView roomView = roomViewRepository.findById(id);
         Long id2 = roomView.getRoomType().getId();
         id3 = id2;
@@ -74,13 +76,13 @@ public class RoomViewController {
     }
 
     @RequestMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable(name = "id") int id) {
+    public String deleteRoomView(@PathVariable(name = "id") int id) {
         roomViewService.delete(id);
         return "redirect:/room_View";
     }
 
     @RequestMapping(value = "/save_room_view", method = RequestMethod.POST)
-    public String saveProduct(@ModelAttribute("room") RoomView roomView) {
+    public String saveRoomView(@ModelAttribute("room") RoomView roomView) {
         Long id = roomView.getRoomType().getId();
         roomView.getRoomType().setId(id3);
         roomViewService.save(roomView);

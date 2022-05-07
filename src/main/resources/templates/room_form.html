@@ -84,10 +84,12 @@
                             <li class="nav-item">
                                 Welcome <span sec:authentication="principal.username"> User</span>
                             </li>
+                            <!--                            <a th:href="@{/}" class="nav-item nav-link">Главное</a>-->
                             <a class="nav-item nav-link" th:href="@{/admin}">Админ</a>
                             <a class="nav-item nav-link active" th:href="@{/room_form}">Добавление номера</a>
                             <a class="nav-item nav-link" th:href="@{/profit}">Прибыль</a>
-                            <a class="nav-item nav-link" th:href="@{/support}">Техподдержка</a>
+                            <a class="nav-item nav-link" th:href="@{/support}">Техпод-держка</a>
+                            <a class="nav-item nav-link" th:href="@{/booking_table}">Брони-рования</a>
                             <a class="nav-item nav-link" th:href="@{/room_View}">Номера</a>
                         </div>
                         <a  th:href="@{/logout}" sec:authorize="isAuthenticated()" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Выход<i class="fa fa-arrow-right ms-3"></i></a>

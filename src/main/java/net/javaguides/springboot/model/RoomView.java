@@ -26,6 +26,8 @@ public class RoomView implements Serializable {
     @Column(name = "floor")
     private int floor;
 
+    @Column(name = "statusBooking")
+    private String statusBooking;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "idRoomType")
@@ -82,6 +84,16 @@ public class RoomView implements Serializable {
         this.floor = floor;
     }
 
+    public RoomView(int colPeople, int price, int number, int floor, String statusBooking, RoomType roomType) {
+        this.colPeople = colPeople;
+        this.price = price;
+        this.number = number;
+        this.floor = floor;
+        this.statusBooking = statusBooking;
+        this.roomType = roomType;
+    }
+
+
     public Long getId() {
         return id;
     }
@@ -129,5 +141,13 @@ public class RoomView implements Serializable {
 
     public void setFloor(int floor) {
         this.floor = floor;
+    }
+
+    public String getStatusBooking() {
+        return statusBooking;
+    }
+
+    public void setStatusBooking(String statusBooking) {
+        this.statusBooking = statusBooking;
     }
 }

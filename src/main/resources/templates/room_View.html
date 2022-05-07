@@ -88,7 +88,8 @@
                             <a class="nav-item nav-link " th:href="@{/admin}">Админ</a>
                             <a class="nav-item nav-link" th:href="@{/room_form}">Добавление номера</a>
                             <a class="nav-item nav-link" th:href="@{/profit}">Прибыль</a>
-                            <a class="nav-item nav-link" th:href="@{/support}">Техподдержка</a>
+                            <a class="nav-item nav-link" th:href="@{/support}">Техпод-держка</a>
+                            <a class="nav-item nav-link" th:href="@{/booking_table}">Брони-рования</a>
                             <a class="nav-item nav-link active" th:href="@{/room_View}">Номера</a>
                         </div>
                         <a  th:href="@{/logout}" sec:authorize="isAuthenticated()" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Выход<i class="fa fa-arrow-right ms-3"></i></a>
@@ -113,17 +114,17 @@
                             <form th:action="@{/room_View}">
                                 Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
                                 &nbsp;
-                                <input type="submit" class="btn btn-primary" value="Search" />
+                                <input type="submit" value="Search" class="btn btn-primary" id="search-input" />
                                 &nbsp;
-                                <input type="button" class="btn btn-danger" value="Clear" id="btnClear" onclick="clearSearch()" />
+                                <input type="button" value="Clear" id="btnClear" class="btn btn-danger" onclick="clearSearch()" />
                             </form>
+                            <br>
                             <script type="text/javascript">
                                 function clearSearch() {
                                     window.location = "[[@{/room_View}]]";
                                 }
                             </script>
-                            <br>
-                            <table border="1" class = "table table-striped table-responsive-md">
+                            <table border="1" class = "table table-striped table-responsive-md" >
                                 <thead>
                                 <tr>
                                     <th>ID</th>
@@ -132,6 +133,7 @@
                                     <th>№ комнаты</th>
                                     <th>Цена</th>
                                     <th>Вместимость</th>
+                                    <th>Статус</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -143,10 +145,11 @@
                                     <td th:text="${room.number}">№ комнаты</td>
                                     <td th:text="${room.price}">Цена</td>
                                     <td th:text="${room.colPeople}">Вместимость</td>
+                                    <td th:text="${room.statusBooking}">Статус</td>
                                     <td>
-                                        <a class="btn btn-primary" th:href="@{'/edit/' + ${room.id}}">Edit</a>
+                                        <a th:href="@{'/edit/' + ${room.id}}" class="btn btn-primary">Edit</a>
                                         &nbsp;&nbsp;&nbsp;
-                                        <a class="btn btn-danger" th:href="@{'/delete/' + ${room.id}}">Delete</a>
+                                        <a th:href="@{'/delete/' + ${room.id}}" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -160,6 +163,7 @@
                                     <th>№ комнаты</th>
                                     <th>Цена</th>
                                     <th>Вместимость</th>
+                                    <th>Статус</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -171,6 +175,7 @@
                                     <td th:text="${room.number}">№ комнаты</td>
                                     <td th:text="${room.price}">Цена</td>
                                     <td th:text="${room.colPeople}">Вместимость</td>
+                                    <td th:text="${room.statusBooking}">Статус</td>
                                     <td>
                                         <a th:href="@{'/edit/' + ${room.id}}" class="btn btn-primary">Edit</a>
                                         &nbsp;&nbsp;&nbsp;

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.awt.print.Book;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -77,15 +78,22 @@ public class UserController {
     public BookingDto bookingRegistration( Model model, BookingDto bookingDto) {
         List<RoomView> listTypeOfRooms = roomViewService.allRoomView();
         List<CustomService> listOfService = customServices.allService();
-//        User user = userService.getUserById(id);
+        List<RoomView> listFreeRooms = new ArrayList<>();
+
+        for(RoomView roomView : listTypeOfRooms){
+            if(roomView.getStatusBooking().equals("Свободный")){
+                listFreeRooms.add(roomView);
+            }
+        }
+
         model.addAttribute("listService", listOfService);
-        model.addAttribute("roomTypes", listTypeOfRooms);
-//        model.addAttribute("user", user);
+        model.addAttribute("roomTypes", listFreeRooms);
         return new BookingDto();
     }
 
     @PostMapping
     public String registerBooking(@ModelAttribute("booking") BookingDto bookingDto, Model model) {
+        bookingDto.setStatus("Активно");
         bookingService.saveBooking(bookingDto);
         return "redirect:/user";
     }

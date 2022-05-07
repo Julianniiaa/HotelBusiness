@@ -62,11 +62,14 @@ public class BookingServiceImpl implements BookingService {
         Set<CustomService> customServiceSet = new HashSet<CustomService>(Collections.singleton(customService));
         User user = userRepository.findByEmail(getCurrentUsername());
 
+        roomView.setStatusBooking("Занят");
+
         Booking booking = new Booking(bookingDto.getDateBegin(),
                 bookingDto.getDateEnd(),
                 roomView.getPrice() * bookingDto.getColDay(),
                 customService.getPrice() * bookingDto.getColDay(),
                 bookingDto.getColDay(),
+                bookingDto.getStatus(),
                 roomView,
                 user,
                 customServiceSet);
@@ -77,5 +80,13 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public List<Booking> allBooking() {
         return bookingRepository.findAll();
+    }
+
+    @Override
+    public Booking changeStatus(long id) {
+        Booking booking = bookingRepository.findBookingById(id);
+        booking.getRoomView().setStatusBooking("Свободный");
+        booking.setStatus("Отмена");
+        return bookingRepository.save(booking);
     }
 }

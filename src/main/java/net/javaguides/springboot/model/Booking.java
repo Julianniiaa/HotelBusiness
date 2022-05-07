@@ -33,6 +33,9 @@ public class Booking implements Serializable {
     @Column(name = "colDay")
     private int colDay;
 
+    @Column(name = "status")
+    private String status;
+
     @ManyToOne
     @JoinColumn(name = "id_room")
     private RoomView roomView;
@@ -112,6 +115,31 @@ public class Booking implements Serializable {
         this.user = user;
     }
 
+    public Booking(LocalDate dateBegin, LocalDate dateEnd, int priceRoom, int priceService, int colDay, String status, RoomView roomView, User user, Set<CustomService> customServices) {
+        this.dateBegin = dateBegin;
+        this.dateEnd = dateEnd;
+        this.priceRoom = priceRoom;
+        this.priceService = priceService;
+        this.colDay = colDay;
+        this.status = status;
+        this.roomView = roomView;
+        this.user = user;
+        this.customServices = customServices;
+    }
+
+    public Booking(Long id, LocalDate dateBegin, LocalDate dateEnd, int priceRoom, int priceService, int colDay, String status, RoomView roomView, User user, Set<CustomService> customServices) {
+        this.id = id;
+        this.dateBegin = dateBegin;
+        this.dateEnd = dateEnd;
+        this.priceRoom = priceRoom;
+        this.priceService = priceService;
+        this.colDay = colDay;
+        this.status = status;
+        this.roomView = roomView;
+        this.user = user;
+        this.customServices = customServices;
+    }
+
     public Long getId() {
         return id;
     }
@@ -182,5 +210,13 @@ public class Booking implements Serializable {
 
     public void setCustomServices(Set<CustomService> customServices) {
         this.customServices = customServices;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
