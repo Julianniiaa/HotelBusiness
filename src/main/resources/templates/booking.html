@@ -114,7 +114,7 @@
                                     <select class="form-control" th:field="*{idRoom}">
                                         <option th:each="room: ${roomTypes}"
                                                 th:value="${room.id}"
-                                                th:text="${room.getRoomType().getType() + ' - Номер:' +room.getNumber() + ' - ' + room.getPrice()}"></option>
+                                                th:text="${room.getRoomType().getType() + ' - Номер: ' +room.getNumber() + ' - Цена: ' + room.getPrice()}"></option>
                                     </select>
                                 </div>
                                 <br>
