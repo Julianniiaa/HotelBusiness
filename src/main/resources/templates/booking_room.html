@@ -130,7 +130,7 @@
                                     <td th:text="${booking.roomView.number}"></td>
                                     <td th:text="${booking.roomView.roomType.type}"></td>
                                     <td th:text="${booking.status}"></td>
-                                    <td><a th:href="@{/changeStatus/{id}(id=${booking.id})}">Отмена брони</a></td>
+                                    <td><a th:href="@{/changeStatus/{id}(id=${booking.id})}" class="btn btn-danger">Отмена брони</a></td>
 
                                 </tr>
                                 </tbody>
